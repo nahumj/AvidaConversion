@@ -1,0 +1,19 @@
+#  1: Update
+#  2: Total Instructions Executed
+#  3: Instructions Executed This Update
+#  4: Total Organisms
+#  5: (deprecated) Total Genotypes
+#  6: (deprecated) Total Threshold
+#  7: (deprecated) Total Species
+#  8: (deprecated) Total Lineages
+
+100 45870 1470 64 0 0 0 0 
+200 587010 10620 974 0 0 0 0 
+300 2465220 28380 4069 0 0 0 0 
+400 6533820 54540 10587 0 0 0 0 
+500 13685430 90420 21902 0 0 0 0 
+600 23872410 107640 38178 0 0 0 0 
+700 34662840 107850 55374 0 0 0 0 
+800 45453240 107880 72443 0 0 0 0 
+900 56241270 107850 89688 0 0 0 0 
+1000 67027770 107910 106918 0 0 0 0 

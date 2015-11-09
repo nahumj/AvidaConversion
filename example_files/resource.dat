@@ -1,0 +1,18 @@
+# Avida resource data
+# Tue Oct 27 16:33:34 2015
+# First column gives the current update, all further columns give the quantity
+# of the particular resource at that update.
+#  1: Update
+#  2: maltose
+
+0 9999.5 
+100 9968.07 
+200 9956.56 
+300 9952.35 
+400 9950.81 
+500 9858.46 
+600 9088.04 
+700 8052.93 
+800 6942.67 
+900 5706.08 
+1000 5196.28 
