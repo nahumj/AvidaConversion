@@ -4,7 +4,8 @@ import os.path
 import collections
 import string
 import csv
-
+import os
+import fnmatch
 
 class ConvertFailure(Exception):
     """Exception raised by script caused by user error""" 
@@ -86,6 +87,29 @@ def convert(in_file, out_file):
     in_file.close()
     out_file.close()
 
+    
+def convert_files_in_directory(directory, delete_after_conversion):
+    def convert_dat_file_path_to_csv(dat_path):
+        no_ext = dat_path[:-3]
+        return no_ext + "csv"
+        
+    dat_paths = []
+    for root, dirnames, filenames in os.walk(directory):
+        
+        for filename in fnmatch.filter(filenames, '*.dat'):
+            file_path = os.path.join(root, filename)
+            dat_paths.append(file_path)
+
+    for dat_path in dat_paths:
+        dat_handle = open(dat_path, 'r')
+        csv_handle = open(convert_dat_file_path_to_csv(dat_path), 'w')
+        convert(dat_handle, csv_handle)
+        dat_handle.close()
+        csv_handle.close()
+        if delete_after_conversion:
+            os.remove(dat_path)
+
+    
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Converts Avida .dat files to csv files.")
@@ -93,10 +117,11 @@ if __name__ == "__main__":
     parser.add_argument("in_file", type=argparse.FileType('r'), nargs='?')
     parser.add_argument("out_file", type=argparse.FileType('w'), nargs='?')
     parser.add_argument("--directory")
+    parser.add_arguemnt("--delete_after_conversion", action='store_true')
     args = parser.parse_args()
-    print(args)
     if args.directory:
-        print("Found: " + args.directory)
+        convert_files_in_directory(
+            args.directory, args.delete_after_conversion)
     else:
-        print("Not Found")
-    convert(args.in_file, args.out_file)
+        if args.in_file and args.out_file:
+            convert(args.in_file, args.out_file)
