@@ -40,6 +40,7 @@ def get_column_names(header):
     
     number_of_columns, _ = parse_column_name(header_clean[-1])
     header_cols = header_clean[len(header_clean) - number_of_columns :]
+
     for expected_col_num_from_0, line in enumerate(header_cols):
         col_num, col_name = parse_column_name(line)
         if expected_col_num_from_0 + 1 != col_num:
@@ -88,8 +89,14 @@ def convert(in_file, out_file):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Converts Avida .dat files to csv files.")
-    parser.add_argument('in_file', type=argparse.FileType('r'))
-    parser.add_argument('out_file', type=argparse.FileType('w'))
+    
+    parser.add_argument("in_file", type=argparse.FileType('r'), nargs='?')
+    parser.add_argument("out_file", type=argparse.FileType('w'), nargs='?')
+    parser.add_argument("--directory")
     args = parser.parse_args()
-
+    print(args)
+    if args.directory:
+        print("Found: " + args.directory)
+    else:
+        print("Not Found")
     convert(args.in_file, args.out_file)
