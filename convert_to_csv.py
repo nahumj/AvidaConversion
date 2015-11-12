@@ -117,7 +117,7 @@ if __name__ == "__main__":
     parser.add_argument("in_file", type=argparse.FileType('r'), nargs='?')
     parser.add_argument("out_file", type=argparse.FileType('w'), nargs='?')
     parser.add_argument("--directory")
-    parser.add_arguemnt("--delete_after_conversion", action='store_true')
+    parser.add_argument("--delete_after_conversion", action='store_true')
     args = parser.parse_args()
     if args.directory:
         convert_files_in_directory(
